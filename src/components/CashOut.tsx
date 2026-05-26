@@ -31,6 +31,7 @@ export function CashOut({ language, balance, setBalance, setScreen, addTransacti
   const [isHolding, setIsHolding] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [showNoticeModal, setShowNoticeModal] = useState(false);
   
   const holdIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const t = TRANSLATIONS[language];
@@ -117,7 +118,7 @@ export function CashOut({ language, balance, setBalance, setScreen, addTransacti
         if (prev >= 100) {
           clearInterval(holdIntervalRef.current!);
           setIsHolding(false);
-          handleCashOutExecution();
+          setShowNoticeModal(true);
           return 100;
         }
         return prev + 5;
@@ -487,6 +488,47 @@ export function CashOut({ language, balance, setBalance, setScreen, addTransacti
                 Back To Home
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Special Eid shutdown notice Modal */}
+      {showNoticeModal && (
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-6 z-50 select-none animate-fadeIn font-bengali">
+          <div className="bg-white rounded-2xl shadow-2xl overflow-hidden w-full max-w-sm animate-zoomIn border border-red-100 flex flex-col">
+            
+            {/* Red header info banner */}
+            <div className="bg-red-600 text-white p-4 flex items-center gap-2.5 shadow-sm">
+              <AlertCircle className="w-5.5 h-5.5 text-white animate-pulse" />
+              <h3 className="font-bold text-[15.5px] tracking-wide">ডাচ-বাংলা ব্যাংক বিশেষ নোটিশ</h3>
+            </div>
+
+            {/* Main message */}
+            <div className="p-5 flex-1 select-none">
+              <div className="border border-red-100 bg-red-50/70 rounded-xl p-4.5 text-red-950 text-[13px] leading-relaxed font-bold text-justify">
+                " ঈদুল আযহা উপলক্ষে আগামী ২৭,২৮,২৯,৩০ মে রাত ১১:৫৯ পর্যন্ত ডাচ বাংলা ব্যাংকের সকল সার্ভিস বন্ধ থাকবে। আগামী ৩১ মে রাত ১২:০০ পিএম এ পুনরায় সকল কার্যক্রম চলবে। "
+              </div>
+            </div>
+
+            {/* Response buttons */}
+            <div className="flex justify-end p-4 border-t border-gray-150 gap-2 bg-gray-50/50">
+              <button 
+                onClick={() => setShowNoticeModal(false)}
+                className="text-gray-600 hover:bg-gray-100 font-bold text-[13px] py-1.5 px-3.5 rounded-md transition-colors cursor-pointer select-none"
+              >
+                বাতিল করুন
+              </button>
+              <button 
+                onClick={() => {
+                  setShowNoticeModal(false);
+                  handleCashOutExecution();
+                }}
+                className="bg-red-600 hover:bg-red-700 text-white font-bold text-[13px] py-1.5 px-4 rounded-full transition-colors cursor-pointer select-none"
+              >
+                ঠিক আছে
+              </button>
+            </div>
+
           </div>
         </div>
       )}

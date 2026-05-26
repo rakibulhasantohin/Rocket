@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PhoneFrame } from './components/PhoneFrame';
 import { Splash } from './components/Splash';
 import { Login } from './components/Login';
@@ -17,11 +17,63 @@ import { Language, Screen, Transaction, LimitCategory } from './types';
 
 export default function App() {
   const [screen, setScreen] = useState<Screen>('LOGIN');
-  const [language, setLanguage] = useState<Language>('BN');
-  const [balance, setBalance] = useState<number>(17494.00); // Starting standard DBBL Rocket balance
-  const [userPhone, setUserPhone] = useState<string>('017108854029'); // Preset phone matching screens
-  const [transactions, setTransactions] = useState<Transaction[]>(INITIAL_TRANSACTIONS);
-  const [limits, setLimits] = useState<LimitCategory[]>(INITIAL_LIMITS);
+  
+  const [language, setLanguage] = useState<Language>(() => {
+    const saved = localStorage.getItem('rocket_lang');
+    return (saved as Language) || 'BN';
+  });
+  
+  const [balance, setBalance] = useState<number>(() => {
+    const saved = localStorage.getItem('rocket_balance');
+    return saved ? parseFloat(saved) : 17494.00;
+  });
+  
+  const [userPhone, setUserPhone] = useState<string>(() => {
+    return localStorage.getItem('rocket_phone') || '017108854029';
+  });
+  
+  const [transactions, setTransactions] = useState<Transaction[]>(() => {
+    const saved = localStorage.getItem('rocket_transactions');
+    return saved ? JSON.parse(saved) : INITIAL_TRANSACTIONS;
+  });
+  
+  const [limits, setLimits] = useState<LimitCategory[]>(() => {
+    const saved = localStorage.getItem('rocket_limits');
+    return saved ? JSON.parse(saved) : INITIAL_LIMITS;
+  });
+
+  const [isOffline, setIsOffline] = useState(!navigator.onLine);
+
+  useEffect(() => {
+    const handleOnline = () => setIsOffline(false);
+    const handleOffline = () => setIsOffline(true);
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('rocket_lang', language);
+  }, [language]);
+
+  useEffect(() => {
+    localStorage.setItem('rocket_balance', balance.toString());
+  }, [balance]);
+
+  useEffect(() => {
+    localStorage.setItem('rocket_phone', userPhone);
+  }, [userPhone]);
+
+  useEffect(() => {
+    localStorage.setItem('rocket_transactions', JSON.stringify(transactions));
+  }, [transactions]);
+
+  useEffect(() => {
+    localStorage.setItem('rocket_limits', JSON.stringify(limits));
+  }, [limits]);
 
   // Prepends completed transaction log and modifies limit limits counters dynamically
   const addTransaction = (newTx: Transaction) => {
@@ -71,6 +123,16 @@ export default function App() {
 
   return (
     <PhoneFrame>
+      {/* Offline Status Badge Indicator */}
+      {isOffline && (
+        <div id="offline-network-badge" className="bg-amber-600 text-white text-[12px] font-semibold py-1.5 px-3 text-center flex items-center justify-center gap-1.5 select-none animate-pulse shrink-0 w-full z-40 sticky top-0 border-b border-amber-700 font-bengali shadow-sm">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-ping"></span>
+          {language === 'BN' 
+            ? 'আপনি অফলাইনে আছেন (ইন্টারনেট ছাড়াও রকেট ব্যবহার করতে পারবেন)' 
+            : 'You are offline (Rocket works completely offline)'}
+        </div>
+      )}
+
       {/* 1. Splash Screen Router */}
       {screen === 'SPLASH' && (
         <Splash onDismiss={() => setScreen('LOGIN')} />

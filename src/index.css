@@ -75,6 +75,19 @@
 }
 
 /* Scrollbar styling */
+@keyframes marquee {
+  0% { transform: translateX(20%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-marquee {
+  animation: marquee 18s infinite linear;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
 ::-webkit-scrollbar {
   width: 6px;
 }

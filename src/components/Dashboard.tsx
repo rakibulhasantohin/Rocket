@@ -136,8 +136,15 @@ export function Dashboard({ language, balance, setScreen, userPhone }: Dashboard
         </div>
       </div>
 
+      {/* Red scrolling notification banner */}
+      <div id="home-scrolling-notice-banner" className="bg-red-600 text-white font-bengali text-[11.5px] py-1 select-none overflow-hidden h-7 shrink-0 flex items-center relative z-20 shadow-sm border-b border-red-700 -mt-[1px]">
+        <div className="whitespace-nowrap animate-marquee flex items-center gap-4 font-bold text-white">
+          <span>🔔 ঈদুল আযহা উপলক্ষে আগামী ২৭,২৮,২৯,৩০ মে রাত ১১:৫৯ পর্যন্ত ডাচ বাংলা ব্যাংকের সকল সার্ভিস বন্ধ থাকবে। আগামী ৩১ মে রাত ১২:০০ পিএম এ পুনরায় সকল কার্যক্রম চলবে। &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 🔔 ঈদুল আযহা উপলক্ষে আগামী ২৭,২৮,২৯,৩০ মে রাত ১১:৫৯ পর্যন্ত ডাচ বাংলা ব্যাংকের সকল সার্ভিস বন্ধ থাকবে। আগামী ৩১ মে রাত ১২:০০ পিএম এ পুনরায় সকল কার্যক্রম চলবে।</span>
+        </div>
+      </div>
+
       {/* Services Section with custom isometric icon mimics */}
-      <div id="home-services" className="px-4 -mt-3 relative z-30 select-none">
+      <div id="home-services" className="px-4 mt-3 relative z-30 select-none">
         <div className="bg-white rounded-2xl shadow-md p-4 flex flex-col">
           
           <div className="flex justify-between items-center mb-3">
