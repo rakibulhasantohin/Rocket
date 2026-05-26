@@ -1,0 +1,6 @@
+{
+  "name": "DBBL Rocket Simulator",
+  "description": "An interactive, high-fidelity simulator for the Dutch-Bangla Bank Rocket (mobile banking) app, containing splash screens, pin login, balance check, send money with tap-and-hold triggers, cash out, mini-statements, and limit trackers.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
