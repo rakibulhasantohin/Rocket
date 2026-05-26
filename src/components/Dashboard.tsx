@@ -93,7 +93,7 @@ export function Dashboard({ language, balance, setScreen, userPhone }: Dashboard
                   <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
                 </svg>
               </div>
-              <span className="text-[11px] font-black tracking-tight text-white leading-none font-sans filter drop-shadow">
+              <span className="text-[14px] font-bold tracking-normal text-white leading-none font-bengali filter drop-shadow">
                 রকেট
               </span>
             </div>
@@ -117,7 +117,7 @@ export function Dashboard({ language, balance, setScreen, userPhone }: Dashboard
                 <span className={`font-sans font-extrabold transition-all duration-300 ${
                   showBalance ? 'text-[#3E0C54] text-[15.5px] tracking-wide' : 'text-[#3E0C54] text-[12.5px] tracking-tight'
                 }`}>
-                  {showBalance ? `${balance.toFixed(2)}` : t.tapForBalance}
+                  {showBalance ? `${balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : t.tapForBalance}
                 </span>
               </div>
 

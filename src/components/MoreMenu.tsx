@@ -283,7 +283,7 @@ export function MoreMenu({
                     {t.availableBalance}
                   </span>
                   <span className="text-[17px] font-extrabold text-gray-900 font-sans mt-1.5">
-                    ৳ {balance.toFixed(2)}
+                    ৳ {balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </span>
                 </div>
 
@@ -293,7 +293,7 @@ export function MoreMenu({
                      {t.currentBalance}
                   </span>
                   <span className="text-[17px] font-extrabold text-gray-900 font-sans mt-1.5">
-                    ৳ {balance.toFixed(2)}
+                    ৳ {balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                   </span>
                 </div>
 
@@ -362,7 +362,7 @@ export function MoreMenu({
                         <span className={`text-[13.5px] font-bold leading-none ${
                           tx.type === 'IN' ? 'text-emerald-600' : 'text-rocket-accent'
                         }`}>
-                          {tx.type === 'IN' ? '+' : '−'} ৳{tx.amount.toFixed(2)}
+                          {tx.type === 'IN' ? '+' : '−'} ৳{tx.amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                         </span>
                       </div>
 

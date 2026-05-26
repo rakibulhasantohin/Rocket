@@ -21,7 +21,7 @@ interface LoginProps {
 
 export function Login({ language, setLanguage, onLoginSuccess, userPhone, setUserPhone }: LoginProps) {
   const [pin, setPin] = useState('');
-  const [isKeypadOpen, setIsKeypadOpen] = useState(true);
+  const [isKeypadOpen, setIsKeypadOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const t = TRANSLATIONS[language];
@@ -65,25 +65,25 @@ export function Login({ language, setLanguage, onLoginSuccess, userPhone, setUse
       <StatusNotch isDarkTheme={false} />
 
       {/* Main Core Content Area */}
-      <div className="flex-1 flex flex-col justify-start px-8 pt-5">
+      <div className="flex-1 flex flex-col justify-start px-8 pt-6">
         
         {/* Language switch button at the top-right matching screenshot exactly */}
-        <div className="flex justify-end w-full mb-3">
+        <div className="flex justify-end w-full mb-8">
           <button 
             id="login-lang-toggle"
             onClick={handleToggleLanguage}
-            className="border border-rocket text-rocket font-sans font-semibold text-xs py-1 px-5 rounded-full select-none hover:bg-rocket-light transition-all active:scale-95 cursor-pointer"
+            className="border-2 border-rocket text-rocket font-sans font-bold text-[13.5px] py-1.5 px-6 rounded-full select-none hover:bg-rocket-light transition-all active:scale-95 cursor-pointer leading-none"
           >
             {t.banglaToggle}
           </button>
         </div>
 
         {/* Small purple centered logo mark */}
-        <div className="flex flex-col items-center mb-5 select-none animate-fadeIn">
-          <div className="relative w-36 h-20 text-rocket">
+        <div className="flex flex-col items-center mb-6 select-none animate-fadeIn">
+          <div className="relative w-[180px] h-[95px] text-rocket">
             {/* White/Purple Airplane vector mark */}
             <svg 
-              className="absolute right-0 top-0 w-16 h-16 transform translate-x-2 -translate-y-2"
+              className="absolute right-0 top-0 w-22 h-22 transform translate-x-3 -translate-y-2"
               viewBox="0 0 100 100" 
               fill="currentColor"
             >
@@ -93,32 +93,28 @@ export function Login({ language, setLanguage, onLoginSuccess, userPhone, setUse
             </svg>
 
             {/* Typography */}
-            <span className="absolute left-1 top-4 font-black text-xs tracking-widest font-sans italic">
+            <span className="absolute left-1.5 top-5 font-black text-xs tracking-widest font-sans italic">
               ROCKET
             </span>
 
-            {/* Bengali "রকেট" Cursive mark */}
-            <div className="absolute left-0 bottom-0 flex items-baseline font-bold leading-none text-rocket">
-              <span className="text-4xl tracking-tight leading-none font-bold">র</span>
-              <span className="text-[34px] tracking-normal leading-none font-bold -ml-[4px]">কে</span>
-              <span className="text-[34px] tracking-tight leading-none font-bold -ml-[1.5px]">ট</span>
+            {/* Bengali "রকেট" Cursive mark formatted gracefully with Hind Siliguri */}
+            <div className="absolute left-0 bottom-2 font-bengali font-bold text-[54px] leading-none text-rocket tracking-normal select-none">
+              রকেট
             </div>
-            
-            <div className="absolute left-[25px] bottom-[9px] w-[6px] h-[6px] bg-rocket rounded-full border border-white" />
           </div>
 
-          <span className="text-[7.5px] text-[#8c2282] font-semibold tracking-wider select-none -mt-1.5 opacity-90 border-t border-rocket/20 pt-[3px]">
+          <span className="text-[9px] text-[#8c2282] font-semibold tracking-wider select-none -mt-1 opacity-95 border-t border-rocket/20 pt-[5px] w-[140px] text-center">
             ডাচ-বাংলা ব্যাংক মোবাইল ব্যাংকিং
           </span>
         </div>
 
         {/* User Interactive Phone Display */}
-        <div className="w-full flex flex-col items-center mb-4 select-none">
+        <div className="w-full flex flex-col items-center mb-6 select-none">
           <input 
             type="text"
             value={userPhone}
             onChange={(e) => setUserPhone(e.target.value)}
-            className="text-center font-sans font-bold text-gray-800 text-lg py-1 px-2 border-b border-dashed border-gray-300 focus:outline-none focus:border-rocket tracking-wide max-w-[180px]"
+            className="text-center font-sans font-bold text-gray-900 text-[19px] tracking-wide focus:outline-none bg-transparent w-full cursor-pointer"
             placeholder="017108854029"
             title="Click to edit or change simulating phone number"
           />
@@ -127,20 +123,20 @@ export function Login({ language, setLanguage, onLoginSuccess, userPhone, setUse
         {/* PIN Input Dots field exactly like the screenshots */}
         <div 
           onClick={() => setIsKeypadOpen(true)}
-          className="w-full h-13 bg-[#F4F1F4] rounded-full flex items-center px-4 mb-4 relative cursor-pointer active:bg-gray-200 transition-colors"
+          className="w-full h-[54px] bg-[#f5eef6] rounded-full flex items-center px-5 mb-5 relative cursor-pointer active:bg-[#ede5f0] transition-colors"
         >
           {/* Padlock icon left */}
-          <Lock className="w-5 h-5 text-gray-600 mr-4" />
+          <Lock className="w-[18px] h-[18px] text-gray-600 mr-4 shrink-0" />
 
           {/* Centered Dots representation representing typed count */}
           <div className="flex-1 flex justify-center items-center gap-2.5 pr-8">
             {[0, 1, 2, 3].map((index) => (
               <div 
                 key={index}
-                className={`w-[12px] h-[12px] rounded-full transition-all duration-150 ${
+                className={`w-[11px] h-[11px] rounded-full transition-all duration-150 ${
                   index < pin.length 
                     ? 'bg-black scale-110' 
-                    : 'bg-[#CFCACF]'
+                    : 'bg-[#cfcacd]'
                 }`}
               />
             ))}
@@ -150,7 +146,7 @@ export function Login({ language, setLanguage, onLoginSuccess, userPhone, setUse
         {/* Bold Purple LOGIN button */}
         <button
           onClick={handleLoginClick}
-          className="w-full py-3.5 bg-rocket text-white rounded-full font-sans font-semibold text-[15px] tracking-widest shadow-md hover:bg-rocket-dark select-none cursor-pointer active:scale-98 transition-transform"
+          className="w-full h-[54px] bg-rocket text-white rounded-full font-sans font-bold text-[16px] tracking-wider shadow-sm hover:bg-[#78186f] select-none cursor-pointer active:scale-[0.98] transition-transform flex items-center justify-center"
         >
           {t.login}
         </button>
@@ -168,10 +164,10 @@ export function Login({ language, setLanguage, onLoginSuccess, userPhone, setUse
 
       {/* Footer support options matching Screenshot 2 */}
       {!isKeypadOpen && (
-        <div className="w-full flex justify-around border-t border-gray-100 py-4 px-2 select-none select-none bg-white">
+        <div className="w-full flex justify-around py-6 px-4 select-none bg-white">
           <button 
             onClick={() => alert('Search nearest DBBL branch / ATM / Rocket agent.')}
-            className="flex flex-col items-center gap-1.5 text-[11px] font-semibold text-gray-900 active:scale-95 transition-transform cursor-pointer"
+            className="flex flex-col items-center gap-1.5 text-xs font-bold text-gray-800 active:scale-95 transition-transform cursor-pointer"
           >
             <MapPin className="w-5 h-5 text-rocket" />
             <span>{t.storeLocator}</span>
@@ -179,7 +175,7 @@ export function Login({ language, setLanguage, onLoginSuccess, userPhone, setUse
 
           <button 
             onClick={() => alert('Direct 24/7 support line at 16216.')}
-            className="flex flex-col items-center gap-1.5 text-[11px] font-semibold text-gray-900 active:scale-95 transition-transform cursor-pointer"
+            className="flex flex-col items-center gap-1.5 text-xs font-bold text-gray-800 active:scale-95 transition-transform cursor-pointer"
           >
             <HelpCircle className="w-5 h-5 text-rocket" />
             <span>{t.helpSupport}</span>

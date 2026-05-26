@@ -4,12 +4,17 @@
 @theme {
   --font-sans: "Inter", "Hind Siliguri", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-bengali: "Hind Siliguri", "Inter", sans-serif;
 
   /* Rocket Custom Palettes */
   --color-rocket: #8c2282;
   --color-rocket-dark: #66185e;
   --color-rocket-light: #fef0fd;
   --color-rocket-accent: #f43f5e;
+}
+
+.font-bengali {
+  font-family: "Hind Siliguri", "Inter", sans-serif;
 }
 
 @layer base {

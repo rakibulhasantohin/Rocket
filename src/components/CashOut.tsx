@@ -476,7 +476,7 @@ export function CashOut({ language, balance, setBalance, setScreen, addTransacti
             <div className="p-6 text-center">
               <span className="text-gray-900 font-sans text-[14px] font-semibold leading-relaxed block">
                 ৳{amountInput} successfully cashed out at Agent!
-                <br />Available Balance is ৳{balance.toFixed(2)}
+                <br />Available Balance is ৳{balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </span>
             </div>
             <div className="flex justify-end p-4 border-t border-gray-100">

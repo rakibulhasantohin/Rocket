@@ -16,9 +16,9 @@ import { INITIAL_TRANSACTIONS, INITIAL_LIMITS } from './data';
 import { Language, Screen, Transaction, LimitCategory } from './types';
 
 export default function App() {
-  const [screen, setScreen] = useState<Screen>('SPLASH');
-  const [language, setLanguage] = useState<Language>('EN');
-  const [balance, setBalance] = useState<number>(17419.00); // Starting standard DBBL Rocket balance
+  const [screen, setScreen] = useState<Screen>('LOGIN');
+  const [language, setLanguage] = useState<Language>('BN');
+  const [balance, setBalance] = useState<number>(17494.00); // Starting standard DBBL Rocket balance
   const [userPhone, setUserPhone] = useState<string>('017108854029'); // Preset phone matching screens
   const [transactions, setTransactions] = useState<Transaction[]>(INITIAL_TRANSACTIONS);
   const [limits, setLimits] = useState<LimitCategory[]>(INITIAL_LIMITS);

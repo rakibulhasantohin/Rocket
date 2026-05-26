@@ -60,15 +60,10 @@ export function Splash({ onDismiss }: SplashProps) {
               ROCKET
             </span>
 
-            {/* Iconic Cursive Bengali "রকেট" Letter Markings */}
-            <div className="absolute left-0 bottom-1 flex items-baseline font-bold leading-none select-none text-white font-sans">
-              <span className="text-6xl tracking-tight leading-none font-bold">র</span>
-              <span className="text-5xl tracking-normal leading-none font-bold -ml-[6px]">কে</span>
-              <span className="text-5xl tracking-tight leading-none font-bold -ml-[2px]">ট</span>
+            {/* Iconic Custom Bengali "রকেট" Letter Markings with Hind Siliguri */}
+            <div className="absolute left-0 bottom-2 font-bengali font-bold text-[62px] leading-none select-none text-white tracking-normal">
+              রকেট
             </div>
-            
-            {/* Tiny accent dot circle underneath standard Rocket "র" */}
-            <div className="absolute left-[38px] bottom-[15px] w-[9px] h-[9px] bg-white rounded-full border-2 border-rocket" />
           </div>
 
           {/* Subtitle tag / Brand Owner */}

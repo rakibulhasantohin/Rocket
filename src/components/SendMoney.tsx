@@ -358,7 +358,7 @@ export function SendMoney({ language, balance, setBalance, setScreen, addTransac
 
               {/* Available balance safety note */}
               <span className="text-[10px] text-gray-500 font-semibold block px-1 my-1">
-                Available balance Taka: ৳ {balance.toFixed(2)}
+                Available balance Taka: ৳ {balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </span>
 
               {/* NEXT Phase */}
@@ -581,7 +581,7 @@ export function SendMoney({ language, balance, setBalance, setScreen, addTransac
             <div className="p-6">
               <span className="text-gray-950 font-sans text-[14px] font-semibold leading-relaxed block text-center">
                 ৳{amountInput} successfully sent to {recipientName || 'ABBU'}!
-                <br />New balance is ৳{balance.toFixed(2)}
+                <br />New balance is ৳{balance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </span>
             </div>
 
