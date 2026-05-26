@@ -30,11 +30,6 @@ export function PhoneFrame({ children }: PhoneFrameProps) {
         <div id="phone-screen" className="flex-1 w-full h-full relative overflow-y-auto overflow-x-hidden flex flex-col bg-white">
           {children}
         </div>
-
-        {/* Home key navigation pill representative */}
-        <div id="home-indicator-pill" className="w-full py-2 bg-transparent absolute bottom-0 left-0 right-0 flex items-center justify-center pointer-events-none z-50">
-          <div className="w-36 h-[4.5px] bg-neutral-800/80 rounded-full" />
-        </div>
       </div>
     </div>
   );

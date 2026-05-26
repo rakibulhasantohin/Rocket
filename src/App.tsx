@@ -29,7 +29,9 @@ export default function App() {
   });
   
   const [userPhone, setUserPhone] = useState<string>(() => {
-    return localStorage.getItem('rocket_phone') || '017108854029';
+    const saved = localStorage.getItem('rocket_phone');
+    if (!saved || saved === '017108854029') return '01710885402';
+    return saved;
   });
   
   const [transactions, setTransactions] = useState<Transaction[]>(() => {

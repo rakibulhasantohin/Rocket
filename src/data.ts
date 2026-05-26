@@ -30,7 +30,7 @@ export const INITIAL_TRANSACTIONS: Transaction[] = [
   {
     id: '#6531473406',
     date: '19-05-26 22:59:55',
-    title: 'NexusPay- Receive Money From 2131580232938 to 017108854029 . ttt',
+    title: 'NexusPay- Receive Money From 2131580232938 to 01710885402 . ttt',
     amount: 93.00,
     type: 'IN'
   },

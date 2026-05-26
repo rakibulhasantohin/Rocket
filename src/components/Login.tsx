@@ -115,7 +115,7 @@ export function Login({ language, setLanguage, onLoginSuccess, userPhone, setUse
             value={userPhone}
             onChange={(e) => setUserPhone(e.target.value)}
             className="text-center font-sans font-bold text-gray-900 text-[19px] tracking-wide focus:outline-none bg-transparent w-full cursor-pointer"
-            placeholder="017108854029"
+            placeholder="01710885402"
             title="Click to edit or change simulating phone number"
           />
         </div>

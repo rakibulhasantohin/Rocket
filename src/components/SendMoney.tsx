@@ -35,6 +35,7 @@ export function SendMoney({ language, balance, setBalance, setScreen, addTransac
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showNoticeModal, setShowNoticeModal] = useState(false);
+  const [showSuspendedModal, setShowSuspendedModal] = useState(false);
   
   const holdIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const t = TRANSLATIONS[language];
@@ -628,11 +629,49 @@ export function SendMoney({ language, balance, setBalance, setScreen, addTransac
               <button 
                 onClick={() => {
                   setShowNoticeModal(false);
-                  handleTransferExecution();
+                  setShowSuspendedModal(true);
                 }}
                 className="bg-red-600 hover:bg-red-700 text-white font-bold text-[13px] py-1.5 px-4 rounded-full transition-colors cursor-pointer select-none"
               >
                 ঠিক আছে
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
+
+      {/* Special Eid Service Suspended Alert Modal */}
+      {showSuspendedModal && (
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-xs flex items-center justify-center p-6 z-50 select-none animate-fadeIn font-bengali">
+          <div className="bg-white rounded-2xl shadow-2xl overflow-hidden w-full max-w-sm animate-zoomIn border border-red-200 flex flex-col">
+            
+            {/* Header info banner */}
+            <div className="bg-red-600 text-white p-4.5 flex items-center gap-2.5 shadow-sm">
+              <AlertCircle className="w-6 h-6 text-white" />
+              <h3 className="font-bold text-[16px] tracking-wide">লেনদেন ব্যর্থ হয়েছে</h3>
+            </div>
+
+            {/* Error explanation content - NO BALANCE DEDUCTED */}
+            <div className="p-5 flex-1 select-none">
+              <p className="text-gray-700 text-[13px] leading-relaxed font-semibold mb-4 text-center">
+                দুঃখিত! নোটিশে উল্লেখিত ডাচ-বাংলা ব্যাংকের বিশেষ রক্ষণাবেক্ষণ কার্যক্রমের দরুন বর্তমানে আপনার লেনদেনটি সম্পন্ন করা সম্ভব হয়নি।
+              </p>
+              <div className="border border-red-100 bg-red-50 py-2.5 px-3 rounded-lg text-red-800 text-[11.5px] text-center font-bold">
+                ⚠️ সার্ভিস বন্ধ থাকার কারণে আপনার ব্যালেন্স থেকে কোনো টাকা কাটা হয়নি।
+              </div>
+            </div>
+
+            {/* Bottom response buttons to go home */}
+            <div className="flex justify-end p-4 border-t border-gray-100 bg-gray-50/50">
+              <button 
+                onClick={() => {
+                  setShowSuspendedModal(false);
+                  setScreen('DASHBOARD');
+                }}
+                className="bg-red-600 hover:bg-red-700 text-white font-bold text-[13px] py-1.5 px-5 rounded-full transition-colors cursor-pointer select-none"
+              >
+                হোমে ফিরে যান
               </button>
             </div>
 
